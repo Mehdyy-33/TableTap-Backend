@@ -8,7 +8,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SubCategoryService {
 
-    private SubCategoryRepository subCategoryRepository;
+    private final SubCategoryRepository subCategoryRepository;
 
     public List<SubCategory> getAll(){
         return subCategoryRepository.findAll();

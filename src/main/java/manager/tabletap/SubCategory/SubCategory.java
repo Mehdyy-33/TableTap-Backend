@@ -1,13 +1,15 @@
 package manager.tabletap.SubCategory;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import manager.tabletap.Category.Category;
+import manager.tabletap.Product.Product;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -21,4 +23,9 @@ public class SubCategory {
     private Long id;
     private String label;
     private String img;
+
+    @ManyToOne
+    @JsonIgnoreProperties("subCategories")
+    private Category category;
+
 }

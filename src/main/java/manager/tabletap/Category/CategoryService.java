@@ -8,7 +8,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<Category> getAll(){
         return categoryRepository.findAll();
@@ -26,7 +26,7 @@ public class CategoryService {
     public Category update(Category category, Long id){
         Category found = getById(id);
         found.setLabel(category.getLabel());
-        category.setSubCategory(category.getSubCategory());
+        category.setSubCategories(category.getSubCategories());
         return categoryRepository.save(found);
     }
 
