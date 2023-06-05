@@ -1,15 +1,12 @@
 package manager.tabletap.SubCategory;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import manager.tabletap.Category.Category;
-import manager.tabletap.Product.Product;
-
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -25,7 +22,7 @@ public class SubCategory {
     private String img;
 
     @ManyToOne
-    @JsonIgnoreProperties("subCategories")
+    @JsonIgnore
     private Category category;
 
 }

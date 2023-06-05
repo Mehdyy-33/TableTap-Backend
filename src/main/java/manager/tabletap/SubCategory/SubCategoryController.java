@@ -21,6 +21,12 @@ public class SubCategoryController {
         return subCategoryService.getById(id);
     }
 
+    @GetMapping("/category/{id}")
+    public List<SubCategory> getByCategoryId(@PathVariable Long id){
+        return subCategoryService.getByCategoryId(id);
+    }
+
+
     @PostMapping("/add")
     public SubCategory add(@RequestBody SubCategory subCategory){
         return subCategoryService.add(subCategory);

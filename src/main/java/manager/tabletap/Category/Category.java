@@ -1,6 +1,6 @@
 package manager.tabletap.Category;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 import manager.tabletap.Product.Product;
 import manager.tabletap.SubCategory.SubCategory;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,10 +24,10 @@ public class Category {
     private String label;
 
     @OneToMany
-    @JsonIgnoreProperties({"category", "subCategory"})
+    @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnoreProperties("category")
+    @JsonIgnore
     private Set<SubCategory> subCategories = new HashSet<>();
 }

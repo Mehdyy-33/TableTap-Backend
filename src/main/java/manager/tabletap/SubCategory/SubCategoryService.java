@@ -12,7 +12,7 @@ public class SubCategoryService {
 
     public List<SubCategory> getAll(){
         return subCategoryRepository.findAll();
-    };
+    }
 
     public SubCategory getById(Long id){
         return subCategoryRepository.findById(id)
@@ -33,5 +33,9 @@ public class SubCategoryService {
 
     public void delete(Long id){
         subCategoryRepository.deleteById(id);
+    }
+
+    public List<SubCategory> getByCategoryId(Long id) {
+        return subCategoryRepository.findByCategoryId(id);
     }
 }
