@@ -1,4 +1,4 @@
-package manager.tabletap.SubCategory;
+package manager.tabletap.Subcategory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import manager.tabletap.Category.Category;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SubCategory {
+public class Subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

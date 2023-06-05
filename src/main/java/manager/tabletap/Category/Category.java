@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import manager.tabletap.Product.Product;
-import manager.tabletap.SubCategory.SubCategory;
+import manager.tabletap.Subcategory.Subcategory;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,5 +30,5 @@ public class Category {
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
-    private Set<SubCategory> subCategories = new HashSet<>();
+    private Set<Subcategory> subcategories = new HashSet<>();
 }

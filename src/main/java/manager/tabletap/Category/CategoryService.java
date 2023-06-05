@@ -26,7 +26,7 @@ public class CategoryService {
     public Category update(Category category, Long id){
         Category found = getById(id);
         found.setLabel(category.getLabel());
-        category.setSubCategories(category.getSubCategories());
+        category.setSubcategories(category.getSubcategories());
         return categoryRepository.save(found);
     }
 

@@ -30,7 +30,7 @@ public class ProductService {
         found.setImg(product.getImg());
         found.setPrice(product.getPrice());
         found.setCategory(product.getCategory());
-        found.setSubCategory(product.getSubCategory());
+        found.setSubcategory(product.getSubcategory());
         found.setSpicyLvl(product.getSpicyLvl());
         found.setIsVege(product.getIsVege());
         found.setIsGlutenFree(product.getIsGlutenFree());

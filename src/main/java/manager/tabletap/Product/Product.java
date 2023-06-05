@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import manager.tabletap.Category.Category;
-import manager.tabletap.SubCategory.SubCategory;
+import manager.tabletap.Subcategory.Subcategory;
 
 @Entity
 @AllArgsConstructor
@@ -25,12 +25,12 @@ public class Product {
     private Double price;
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnoreProperties({"products", "subCategories"})
+    @JsonIgnoreProperties({"products", "subcategories"})
     private Category category;
 
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"products", "category"})
-    private SubCategory subCategory;
+    private Subcategory subcategory;
 
     private Long spicyLvl;
     private Boolean isVege;
