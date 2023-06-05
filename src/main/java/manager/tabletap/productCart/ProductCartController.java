@@ -14,7 +14,27 @@ public class ProductCartController {
 
     @GetMapping
     public List<ProductCart> getAll() {
-        return productCartService.getAll();
+        return productCartService.getAllProductCart();
+    }
+
+    @GetMapping("/{id}")
+    public ProductCart getById(@PathVariable("id") Long id) {
+        return productCartService.getById(id);
+    }
+
+    @GetMapping("/allNumberTable")
+    public List<Integer> getAllTable() {
+        return productCartService.getAllTable();
+    }
+
+    @GetMapping("/getByNumberTable/{numberTable}")
+    public List<ProductCart> getByNumberTable(@PathVariable("numberTable") Integer numberTable) {
+        return productCartService.getByNumberTable(numberTable);
+    }
+
+    @GetMapping("/getTotalByNumberTable/{numberTable}")
+    public Double getTotalByNumberTable(@PathVariable("numberTable") Integer numberTable) {
+        return productCartService.getTotalByNumberTable(numberTable);
     }
 
     @PostMapping("/add")
@@ -27,4 +47,13 @@ public class ProductCartController {
         return productCartService.help(productCart);
     }
 
+    @PutMapping("/update/{id}")
+    public ProductCart updateProductCart(@PathVariable Long id, @RequestBody ProductCart productCart) {
+        return productCartService.updateProductCart(id, productCart);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteProductCart(@PathVariable Long id) {
+        productCartService.deleteProductCart(id);
+    }
 }

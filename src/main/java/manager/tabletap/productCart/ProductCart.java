@@ -18,16 +18,17 @@ import java.util.Date;
 @NoArgsConstructor
 public class ProductCart {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String product;
-    private String description;
-    private String img;
     private int quantity;
     private int tableNumber;
     private double price;
     private double total;
     private Date date;
     private String comment;
+    private boolean isViewStaff;
+    private boolean isValid;
 }
