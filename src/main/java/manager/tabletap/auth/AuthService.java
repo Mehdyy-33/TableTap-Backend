@@ -37,7 +37,7 @@ public class AuthService {
 
             repository.save(user);
 
-            return "User registered in Database";
+            return "";
 
         } else {
             System.out.println("Username already taken");
