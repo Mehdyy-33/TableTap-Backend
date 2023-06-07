@@ -1,6 +1,10 @@
 package manager.tabletap.Product;
 
 import lombok.RequiredArgsConstructor;
+import manager.tabletap.Category.Category;
+import manager.tabletap.Category.CategoryService;
+import manager.tabletap.Subcategory.Subcategory;
+import manager.tabletap.Subcategory.SubcategoryService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -9,6 +13,8 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryService categoryService;
+    private final SubcategoryService subcategoryService;
 
     public List<Product> getAll(){
         return productRepository.findAll();
@@ -20,6 +26,19 @@ public class ProductService {
     }
 
     public Product add(Product product){
+        Long categoryId = product.getCategory().getId();
+        Category category = categoryService.getById(categoryId);
+        product.setCategory(category);
+
+        Long subcategoryId = product.getSubcategory().getId();
+        Subcategory subcategory = subcategoryService.getById(subcategoryId);
+
+        if (!subcategory.getCategory().getId().equals(categoryId)) {
+            throw new RuntimeException("La sous-catégorie ne correspond pas à la catégorie associée.");
+        }
+
+        product.setSubcategory(subcategory);
+
         return productRepository.save(product);
     }
 

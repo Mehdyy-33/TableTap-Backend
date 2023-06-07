@@ -24,11 +24,11 @@ public class Product {
     private String img;
     private Double price;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"products", "subcategories"})
     private Category category;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"products", "category"})
     private Subcategory subcategory;
 
