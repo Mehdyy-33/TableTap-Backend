@@ -1,5 +1,6 @@
 package manager.tabletap.productCart;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,11 @@ public class ProductCartService {
     }
 
     public List<ProductCart> addProductCart(List<ProductCart> productCartList) {
-        productCartList.forEach(productCart -> productCart.setTotal(productCart.getQuantity() * productCart.getPrice()));
+        productCartList.forEach(productCart -> {
+            productCart.setTotal(productCart.getQuantity() * productCart.getPrice());
+            productCart.setViewStaff(true);
+            productCart.setValid(false);
+        });
         return productCartRepository.saveAll(productCartList);
     }
 
@@ -40,11 +45,7 @@ public class ProductCartService {
         return productCartRepository.save(foundProductCart);
     }
 
-    public void deleteProductCart(Long id) {
-        if (productCartRepository.existsById(id)) {
-            productCartRepository.deleteById(id);
-        }
-    }
+
 
     public List<ProductCart> getByNumberTable(Integer numberTable) {
         return productCartRepository.findByNumberTable(numberTable);
@@ -54,4 +55,12 @@ public class ProductCartService {
         return productCartRepository.getTotalByNumberTable(numberTable);
     }
 
+    @Transactional
+    public void deleteProductCart(Integer numberTable) {
+        productCartRepository.deleteByNumberTable(numberTable);
+    }
+
+    public void deleteProductCartById(Long id) {
+        productCartRepository.deleteById(id);
+    }
 }
