@@ -52,8 +52,13 @@ public class ProductCartController {
         return productCartService.updateProductCart(id, productCart);
     }
 
+    @DeleteMapping("/deleteAllByNumberTable/{numberTable}")
+    public void deleteProductCart(@PathVariable("numberTable") Integer numberTable) {
+        productCartService.deleteProductCart(numberTable);
+    }
+
     @DeleteMapping("/delete/{id}")
-    public void deleteProductCart(@PathVariable Long id) {
-        productCartService.deleteProductCart(id);
+    public void deleteProductCartById(@PathVariable("id") Long id) {
+        productCartService.deleteProductCartById(id);
     }
 }
