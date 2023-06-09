@@ -28,7 +28,7 @@ public class Product {
     @JsonIgnoreProperties({"products", "subcategories"})
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties({"products", "category"})
     private Subcategory subcategory;
 
