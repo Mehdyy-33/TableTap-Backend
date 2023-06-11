@@ -48,12 +48,9 @@ public class ProductService {
         found.setDescription(product.getDescription());
         found.setImg(product.getImg());
         found.setPrice(product.getPrice());
-        found.setCategory(product.getCategory());
-        found.setSubcategory(product.getSubcategory());
         found.setSpicyLvl(product.getSpicyLvl());
         found.setIsVege(product.getIsVege());
         found.setIsGlutenFree(product.getIsGlutenFree());
-        found.setIsAvailable(product.getIsAvailable());
 
         return productRepository.save(found);
     }
