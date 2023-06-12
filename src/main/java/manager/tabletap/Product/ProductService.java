@@ -42,22 +42,25 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product update(Product product, Long id){
+    public Product update(Long id, Product product){
         Product found = getById(id);
         found.setTitle(product.getTitle());
         found.setDescription(product.getDescription());
         found.setImg(product.getImg());
         found.setPrice(product.getPrice());
-        found.setCategory(product.getCategory());
-        found.setSubcategory(product.getSubcategory());
         found.setSpicyLvl(product.getSpicyLvl());
         found.setIsVege(product.getIsVege());
         found.setIsGlutenFree(product.getIsGlutenFree());
-        found.setIsAvailable(product.getIsAvailable());
 
         return productRepository.save(found);
     }
 
+    public Product updateAvailability(Long id, Product product){
+        Product found = getById(id);
+        found.setIsAvailable(product.getIsAvailable());
+
+        return productRepository.save(found);
+    }
     public void delete(Long id){
         productRepository.deleteById(id);
     }
