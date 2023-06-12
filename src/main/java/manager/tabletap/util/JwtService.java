@@ -1,6 +1,5 @@
 package manager.tabletap.util;
 import io.jsonwebtoken.Claims;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -52,7 +52,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername()) /* On utilise "getUsername" mais nous avons override pour dire que ça retourne l'email*/
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 60000 * 1000 )) /* Valid for 15 sec */
+                .setExpiration(new Date(System.currentTimeMillis() + 600000000 * 1000 )) /* Valid for 15 sec */
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact(); /* Generate and return the token */
     }
@@ -80,7 +80,3 @@ public class JwtService {
 
 
 }
-
-
-
-

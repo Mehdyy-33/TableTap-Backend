@@ -29,7 +29,6 @@ public class User implements UserDetails {
     private String email;
     @JsonIgnore
     private String password;
-    @JsonIgnore
     private String passwordVerification;
     private String restaurantName;
     private String numberSiret;
@@ -39,8 +38,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+        return List.of(new SimpleGrantedAuthority(role));}
+
 
     @Override
     public String getUsername() {

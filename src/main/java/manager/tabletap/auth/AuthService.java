@@ -1,10 +1,12 @@
 package manager.tabletap.auth;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import manager.tabletap.user.User;
 import manager.tabletap.user.UserRepository;
 import manager.tabletap.util.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,8 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public String register(RegisterRequest request) throws Exception {
+    public Map<String, String >register(RegisterRequest request, HttpServletRequest httpRequest) throws Exception {
+
 
         if (!repository.findByEmail(request.getEmail()).isPresent()) {
             var user = User.builder()
@@ -31,22 +34,25 @@ public class AuthService {
                     .numberSiret(request.getNumberSiret())
                     .numberTable(request.getNumberTable())
                     .email(request.getEmail())
-                    .password(passwordEncoder.encode(request.getPassword()))
+                    .password(passwordEncoder.encode
+                            (request.getPassword()))
                     .role("ROLE_USER")
                     .build();
 
             repository.save(user);
 
-            return "";
+            Map<String, String> body = new HashMap<>();
+            body.put("message", "Account successfully created");
+            return body;
 
         } else {
-            System.out.println("Username already taken");
+            httpRequest.setAttribute("username_taken_exception", "Username already taken");
             throw new Exception("Username already taken");
         }
 
     }
 
-    public AuthResponse authenticate(AuthRequest request) {
+    public AuthResponse authenticate(AuthRequest request, HttpServletRequest httpRequest) {
 
 
         /* Permet de comparer le pwd reçu de la request reçue avec le pwd haché de la BDD.
@@ -55,25 +61,32 @@ public class AuthService {
          *  Cela permet de l'utiliser pour autoriser/refuser l'accès aux ressources protégées
          * S'il n'est pas trouvé, une erreur est levée et la méthode s'arrête.
          */
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
 
-        /* Si tout va bien et que les informations sont OK, on peut récupérer l'utilisateur */
-        User user = repository.findByEmail(request.getEmail()).orElseThrow();
+            /* Si tout va bien et que les informations sont OK, on peut récupérer l'utilisateur */
+            User user = repository.findByEmail(request.getEmail()).orElseThrow();
 
-        /* On extrait le rôle de l'utilisateur */
-        Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("role", user.getRole().toString());
+            /* On extrait le rôle de l'utilisateur */
+            Map<String, Object> extraClaims = new HashMap<>();
+            extraClaims.put("role", user.getRole().toString());
 
-        /* On génère le token avec le rôle */
-        String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);
-        return AuthResponse.builder()
-                .token(jwtToken)
-                .build();
+            /* On génère le token avec le rôle */
+            String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);
+            return AuthResponse.builder()
+                    .token(jwtToken)
+                    .message("Logged In")
+                    .build();
+
+        } catch (BadCredentialsException ex) {
+            httpRequest.setAttribute("bad_credentials", ex.getMessage());
+            throw new BadCredentialsException("Bad credentials");
+        }
 
     }
 }
