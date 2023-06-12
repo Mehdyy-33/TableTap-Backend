@@ -26,7 +26,6 @@ public class SubcategoryService {
     public Subcategory update(Subcategory subCategory, Long id){
         Subcategory found = getById(id);
         found.setLabel(subCategory.getLabel());
-        found.setImg(subCategory.getImg());
 
         return subcategoryRepository.save(found);
     }
