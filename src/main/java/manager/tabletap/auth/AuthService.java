@@ -24,7 +24,7 @@ public class AuthService {
 
     public String register(RegisterRequest request) throws Exception {
 
-        if (!repository.findByEmail(request.getEmail()).isPresent()) {
+        if (repository.findByEmail(request.getEmail()).isEmpty()) {
             var user = User.builder()
                     .passwordVerification(request.getPasswordVerification())
                     .restaurantName(request.getRestaurantName())
@@ -67,7 +67,7 @@ public class AuthService {
 
         /* On extrait le rôle de l'utilisateur */
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("role", user.getRole().toString());
+        extraClaims.put("role", user.getRole());
 
         /* On génère le token avec le rôle */
         String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);

@@ -18,7 +18,7 @@ public class ProductService {
 
     public List<Product> getAll(){
         return productRepository.findAll();
-    };
+    }
 
     public Product getById(Long id){
         return productRepository.findById(id)
@@ -48,8 +48,6 @@ public class ProductService {
         found.setDescription(product.getDescription());
         found.setImg(product.getImg());
         found.setPrice(product.getPrice());
-        found.setCategory(product.getCategory());
-        found.setSubcategory(product.getSubcategory());
         found.setSpicyLvl(product.getSpicyLvl());
         found.setIsVege(product.getIsVege());
         found.setIsGlutenFree(product.getIsGlutenFree());
@@ -61,4 +59,6 @@ public class ProductService {
     public void delete(Long id){
         productRepository.deleteById(id);
     }
+
+
 }

@@ -46,7 +46,6 @@ public class ProductCartService {
     }
 
 
-
     public List<ProductCart> getByNumberTable(Integer numberTable) {
         return productCartRepository.findByNumberTable(numberTable);
     }
@@ -62,5 +61,10 @@ public class ProductCartService {
 
     public void deleteProductCartById(Long id) {
         productCartRepository.deleteById(id);
+    }
+
+
+    public List<Object> getProductCartByMoment() {
+        return productCartRepository.getProductCartByMoment();
     }
 }

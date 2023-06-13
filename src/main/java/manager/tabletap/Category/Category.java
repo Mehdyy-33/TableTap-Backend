@@ -28,7 +28,7 @@ public class Category {
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
-    @OneToMany(mappedBy ="category", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy ="category", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
     private Set<Subcategory> subcategories = new HashSet<>();
 }

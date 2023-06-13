@@ -33,6 +33,7 @@ public class SubcategoryController {
         return subcategoryService.add(subcategory);
     }
 
+
     @PutMapping("/update/{id}")
     public Subcategory update(@RequestBody Subcategory subcategory, @PathVariable Long id) {
         return subcategoryService.update(subcategory, id);

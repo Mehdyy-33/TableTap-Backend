@@ -25,4 +25,11 @@ public interface ProductCartRepository extends JpaRepository<ProductCart, Long> 
     @Modifying
     @Query(value = "delete from product_cart where table_number = ?", nativeQuery = true)
     void deleteByNumberTable(Integer numberTable);
+
+
+    @Query(value = "SELECT DATE_FORMAT(date, date ) AS moment, table_number, " +
+            "JSON_ARRAYAGG(JSON_OBJECT('id', id, 'product', product, 'quantity', quantity, 'is_view_staff', is_view_staff, 'is_valid', is_valid)) " +
+            "AS produits FROM product_cart GROUP BY moment, table_number", nativeQuery = true)
+    List<Object> getProductCartByMoment();
 }
+
