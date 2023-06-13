@@ -20,6 +20,8 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
     private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final AccessDeniedHandler accessDeniedHandler;
+
 
 
     @Bean
@@ -30,20 +32,22 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler)
                 .and()
 
                 .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll() /* n'importe qui a accès à cet url */
-                .requestMatchers("/api/v1/demo/users-only").hasAnyRole(Role.USER.name()) /* ROLE_USER */
-                .requestMatchers("/api/v1/demo/admin-only").hasAnyRole(Role.ADMIN.name()) /* ROLE_ADMIN */
+                .requestMatchers("/api/v1/auth/*").permitAll()
+                .requestMatchers("/api/v1/demo/users-only").hasAnyRole(Role.USER.name())
+                .requestMatchers("/api/v1/demo/admin-only").hasAnyRole(Role.ADMIN.name())
 
                 .anyRequest().authenticated()
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-            return http.build();
+        return http.build();
 
     }
 }

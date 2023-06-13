@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 
 @Component
@@ -38,7 +39,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         /* On vérifie si authHeader n'est pas null ET si la valeur de la clé "Authorization" commence par "Bearer " */
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            request.setAttribute("no_jwt_provided", "No JWT provided");
             filterChain.doFilter(request, response);
+
+
             return;
         }
 
