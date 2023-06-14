@@ -19,7 +19,39 @@ public class SalesFigureService {
     }
 
 
-    public List<Object> getAllFromMonth() {
-        return salesFigureRepository.getAllFromMonth();
+    public List<Object> getAllFromMonth(Integer year, Integer month) {
+        return salesFigureRepository.getAllFromMonth(year, month);
+    }
+
+    public Double getSumOfMonth(Integer year, Integer month) {
+        return salesFigureRepository.getSumOfMonth(year, month);
+    }
+
+    public List<Object> getYear() {
+        return salesFigureRepository.getYear();
+    }
+
+    public List<Integer> getMonthByYear(Integer year) {
+        return salesFigureRepository.getMonthByYear(year);
+    }
+
+    public Double getSumOfYear() {
+        return salesFigureRepository.getSumOfYear();
+    }
+
+    public Integer getOrderNumber() {
+        return salesFigureRepository.getOrderNumber();
+    }
+
+    public Double getPourcentLastMonth(Integer year, Integer month) {
+        return salesFigureRepository.getPourcentLastMonth(year, month);
+    }
+
+    public Integer getOrderNumberByMonth(Integer year, Integer month) {
+        return salesFigureRepository.getOrderNumberByMonth(year, month);
+    }
+
+    public Integer getDifferenceOrder(Integer year, Integer month) {
+        return salesFigureRepository.getDifferenceOrder(year, month);
     }
 }

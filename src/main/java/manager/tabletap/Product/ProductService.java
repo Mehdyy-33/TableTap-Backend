@@ -18,7 +18,7 @@ public class ProductService {
 
     public List<Product> getAll(){
         return productRepository.findAll();
-    };
+    }
 
     public Product getById(Long id){
         return productRepository.findById(id)
@@ -64,4 +64,6 @@ public class ProductService {
     public void delete(Long id){
         productRepository.deleteById(id);
     }
+
+
 }
