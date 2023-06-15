@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .and()
 
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/api/v1/demo/users-only").hasAnyRole(Role.USER.name())
                 .requestMatchers("/api/v1/demo/admin-only").hasAnyRole(Role.ADMIN.name())
 
