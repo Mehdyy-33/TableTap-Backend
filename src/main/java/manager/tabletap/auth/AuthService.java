@@ -36,7 +36,7 @@ public class AuthService {
                     .email(request.getEmail())
                     .password(passwordEncoder.encode
                             (request.getPassword()))
-                    .role("ROLE_USER")
+                    .role("ROLE_ADMIN")
                     .build();
 
             repository.save(user);
