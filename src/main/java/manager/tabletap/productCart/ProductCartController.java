@@ -61,4 +61,12 @@ public class ProductCartController {
     public void deleteProductCartById(@PathVariable("id") Long id) {
         productCartService.deleteProductCartById(id);
     }
+
+
+
+
+    @GetMapping("/getProductCartByMoment")
+    public List<Object> getProductCartByMoment() {
+        return productCartService.getProductCartByMoment();
+    }
 }

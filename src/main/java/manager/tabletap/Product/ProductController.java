@@ -7,7 +7,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
-
 public class ProductController {
 
     private final ProductService productService;
@@ -41,4 +40,6 @@ public class ProductController {
     public void delete(@PathVariable Long id){
         productService.delete(id);
     }
+
 }
+
