@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import manager.tabletap.Category.Category;
 import manager.tabletap.Subcategory.Subcategory;
+import manager.tabletap.user.User;
 
 @Entity
 @AllArgsConstructor
@@ -36,5 +37,8 @@ public class Product {
     private Boolean isVege;
     private Boolean isGlutenFree;
     private Boolean isAvailable;
+
+    @ManyToOne
+    private User user;
 }
 
