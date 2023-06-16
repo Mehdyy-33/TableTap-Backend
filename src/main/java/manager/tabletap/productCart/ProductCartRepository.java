@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ProductCartRepository extends JpaRepository<ProductCart, Long> {
 
-    @Query(value = "SELECT distinct table_number FROM product_cart ORDER BY table_number", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT subquery.table_number FROM (SELECT table_number FROM `table-tap`.product_cart ORDER BY date DESC) AS subquery", nativeQuery = true)
     List<Integer> findAllTable();
 
     @Query(value = "SELECT * FROM product_cart ORDER BY date ASC", nativeQuery = true)
@@ -31,5 +31,7 @@ public interface ProductCartRepository extends JpaRepository<ProductCart, Long> 
             "JSON_ARRAYAGG(JSON_OBJECT('id', id, 'product', product, 'quantity', quantity, 'is_view_staff', is_view_staff, 'is_valid', is_valid)) " +
             "AS produits FROM product_cart GROUP BY moment, table_number", nativeQuery = true)
     List<Object> getProductCartByMoment();
+
+
 }
 
