@@ -39,7 +39,7 @@ public class User implements UserDetails {
 
     @OneToMany
     @JsonIgnore
-    private Set<Product> products = new HashSet();
+    private Set<Product> products = new HashSet<>();
 
     @OneToMany
     @JsonIgnore
