@@ -38,11 +38,13 @@ public class ProductCartService {
         return productCartRepository.save(productCart);
     }
 
-    public ProductCart updateProductCart(Long id, ProductCart productCart) {
-        ProductCart foundProductCart = getById(id);
-        foundProductCart.setViewStaff(productCart.isViewStaff());
-        foundProductCart.setValid(!productCart.isValid());
-        return productCartRepository.save(foundProductCart);
+    public List<Integer> updateProductCart( List<Long> idList) {
+            idList.forEach(id -> {
+                ProductCart productCart = getById(id);
+                productCart.setValid(true);
+                productCartRepository.save(productCart);
+            });
+        return null;
     }
 
 
