@@ -31,7 +31,7 @@ public class UserService {private final UserRepository userRepository;
 
     public User update(User user, Long id) {
         User found = getById(id);
-        return userRepository.save(user);
+        return userRepository.save(found);
     }
 
 
