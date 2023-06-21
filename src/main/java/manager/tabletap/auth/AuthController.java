@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -23,12 +23,10 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthRequest request,HttpServletRequest httpRequest ) {
-         {
+        {
             AuthResponse authenticationResponse = service.authenticate(request, httpRequest);
             return ResponseEntity.ok(authenticationResponse); // Réponse réussie avec le token JWT
         }
-        }
-
-
+    }
     }
 

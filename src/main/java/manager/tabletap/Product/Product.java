@@ -38,7 +38,7 @@ public class Product {
     private Boolean isGlutenFree;
     private Boolean isAvailable;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User user;
 
 }
