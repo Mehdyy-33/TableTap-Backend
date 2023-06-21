@@ -11,9 +11,9 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping
-    public List<Product> getAll(){
-        return productService.getAll();
+    @GetMapping("/user/{id}")
+    public List<Product> getAll(@PathVariable Long id){
+        return productService.getAll(id);
     }
 
     @GetMapping("/{id}")

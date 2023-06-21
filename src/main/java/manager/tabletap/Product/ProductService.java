@@ -8,6 +8,8 @@ import manager.tabletap.Subcategory.SubcategoryService;
 import manager.tabletap.user.User;
 import manager.tabletap.user.UserService;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,8 +22,8 @@ public class ProductService {
 
     private final UserService userService;
 
-    public List<Product> getAll(){
-        return productRepository.findAll();
+    public List<Product> getAll(Long id){
+        return productRepository.findAllByUserId(id);
     }
 
     public Product getById(Long id){
