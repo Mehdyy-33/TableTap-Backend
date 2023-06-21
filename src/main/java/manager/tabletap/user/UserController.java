@@ -60,4 +60,5 @@ public class UserController {
             throw new AccessDeniedException("User does not have the correct rights to access this resource");
         }
     }
+
 }
