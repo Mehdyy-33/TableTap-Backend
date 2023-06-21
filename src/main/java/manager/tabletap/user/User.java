@@ -38,18 +38,22 @@ public class User implements UserDetails {
     private String numberTable;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
     @OneToMany
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<PromoCode> promoCodes = new HashSet<>();
 
     @OneToMany
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<SalesFigure> salesFigures = new HashSet<>();
 
     @OneToMany
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<ProductCount> productCounts = new HashSet<>();
 
