@@ -5,6 +5,8 @@ import manager.tabletap.Category.Category;
 import manager.tabletap.Category.CategoryService;
 import manager.tabletap.Subcategory.Subcategory;
 import manager.tabletap.Subcategory.SubcategoryService;
+import manager.tabletap.user.User;
+import manager.tabletap.user.UserService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
     private final SubcategoryService subcategoryService;
+
+    private final UserService userService;
 
     public List<Product> getAll(){
         return productRepository.findAll();
@@ -33,8 +37,17 @@ public class ProductService {
         Long subcategoryId = product.getSubcategory().getId();
         Subcategory subcategory = subcategoryService.getById(subcategoryId);
 
+        Long userId = product.getUser().getId();
+        User user = userService.getById(userId);
+        product.setUser(user);
+
         if (!subcategory.getCategory().getId().equals(categoryId)) {
             throw new RuntimeException("La sous-catégorie ne correspond pas à la catégorie associée.");
+        }
+
+        if(!product.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Le produit ne correspond pas à l'utilisateur associé.");
+
         }
 
         product.setSubcategory(subcategory);

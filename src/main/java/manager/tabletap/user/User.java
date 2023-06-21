@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String numberSiret;
     private String numberTable;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
