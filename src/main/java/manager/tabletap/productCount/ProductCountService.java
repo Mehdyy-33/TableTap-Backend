@@ -9,14 +9,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductCountService {
 
-    private final ProductCountRepository testRepository;
-
-    public List<ProductCount> getAll() {
-        return testRepository.findAll();
-    }
+    private final ProductCountRepository productCountRepository;
 
 
-    public List<ProductCount> getByCategory(Integer categoryId) {
-        return testRepository.getByCategory(categoryId);
+
+    public List<ProductCount> getByCategory(Integer id, Integer categoryId) {
+        return productCountRepository.getByCategory(id, categoryId);
     }
 }

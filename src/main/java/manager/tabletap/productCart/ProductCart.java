@@ -1,13 +1,11 @@
 package manager.tabletap.productCart;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import manager.tabletap.user.User;
 
 import java.util.Date;
 
@@ -31,4 +29,7 @@ public class ProductCart {
     private String comment;
     private boolean isViewStaff;
     private boolean isValid;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private User user;
 }

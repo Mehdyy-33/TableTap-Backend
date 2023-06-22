@@ -12,9 +12,9 @@ public class ProductCartController {
 
     private final ProductCartService productCartService;
 
-    @GetMapping
-    public List<ProductCart> getAll() {
-        return productCartService.getAllProductCart();
+    @GetMapping("user/{id}")
+    public List<ProductCart> getAll(@PathVariable Long id) {
+        return productCartService.getAllProductCart(id);
     }
 
     @GetMapping("/{id}")
@@ -22,19 +22,19 @@ public class ProductCartController {
         return productCartService.getById(id);
     }
 
-    @GetMapping("/allNumberTable")
-    public List<Integer> getAllTable() {
-        return productCartService.getAllTable();
+    @GetMapping("/allNumberTable/user/{id}")
+    public List<Integer> getAllTable(@PathVariable Long id) {
+        return productCartService.getAllTable(id);
     }
 
-    @GetMapping("/getByNumberTable/{numberTable}")
-    public List<ProductCart> getByNumberTable(@PathVariable("numberTable") Integer numberTable) {
-        return productCartService.getByNumberTable(numberTable);
+    @GetMapping("/getByNumberTable/{numberTable}/user/{id}")
+    public List<ProductCart> getByNumberTable(@PathVariable("numberTable") Integer numberTable, @PathVariable Long id) {
+        return productCartService.getByNumberTable(numberTable, id);
     }
 
-    @GetMapping("/getTotalByNumberTable/{numberTable}")
-    public Double getTotalByNumberTable(@PathVariable("numberTable") Integer numberTable) {
-        return productCartService.getTotalByNumberTable(numberTable);
+    @GetMapping("/getTotalByNumberTable/{numberTable}/user/{id}")
+    public Double getTotalByNumberTable(@PathVariable("numberTable") Integer numberTable, @PathVariable Long id) {
+        return productCartService.getTotalByNumberTable(numberTable, id);
     }
 
     @PostMapping("/add")
@@ -63,10 +63,4 @@ public class ProductCartController {
     }
 
 
-
-
-    @GetMapping("/getProductCartByMoment")
-    public List<Object> getProductCartByMoment() {
-        return productCartService.getProductCartByMoment();
-    }
 }

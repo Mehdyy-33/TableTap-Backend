@@ -19,39 +19,39 @@ public class SalesFigureService {
     }
 
 
-    public List<Object> getAllFromMonth(Integer year, Integer month) {
-        return salesFigureRepository.getAllFromMonth(year, month);
+    public List<Object> getAllFromMonth(Integer id,Integer year, Integer month) {
+        return salesFigureRepository.getAllFromMonth(id, year, month);
     }
 
-    public Double getSumOfMonth(Integer year, Integer month) {
-        return salesFigureRepository.getSumOfMonth(year, month);
+    public Double getSumOfMonth(Integer id, Integer year, Integer month) {
+        return salesFigureRepository.getSumOfMonth(id, year, month);
     }
 
-    public List<Object> getYear() {
-        return salesFigureRepository.getYear();
+    public List<Object> getYear(Integer id) {
+        return salesFigureRepository.getYear(id);
     }
 
-    public List<Integer> getMonthByYear(Integer year) {
-        return salesFigureRepository.getMonthByYear(year);
+    public List<Integer> getMonthByYear(Integer id, Integer year) {
+        return salesFigureRepository.getMonthByYear(id, year);
     }
 
-    public Double getSumOfYear() {
-        return salesFigureRepository.getSumOfYear();
+    public Double getSumOfYear(Integer id) {
+        return salesFigureRepository.getSumOfYear(id);
     }
 
-    public Integer getOrderNumber() {
-        return salesFigureRepository.getOrderNumber();
+    public Integer getOrderNumber(Integer id) {
+        return salesFigureRepository.getOrderNumber(id);
     }
 
-    public Double getPourcentLastMonth(Integer year, Integer month) {
-        return salesFigureRepository.getPourcentLastMonth(year, month);
+    public Double getPourcentLastMonth(Integer id, Integer year, Integer month) {
+        return salesFigureRepository.getPourcentLastMonth(id, year, month);
     }
 
-    public Integer getOrderNumberByMonth(Integer year, Integer month) {
-        return salesFigureRepository.getOrderNumberByMonth(year, month);
+    public Integer getOrderNumberByMonth(Integer id, Integer year, Integer month) {
+        return salesFigureRepository.getOrderNumberByMonth(id, year, month);
     }
 
-    public Integer getDifferenceOrder(Integer year, Integer month) {
-        return salesFigureRepository.getDifferenceOrder(year, month);
+    public Integer getDifferenceOrder(Integer id, Integer year, Integer month) {
+        return salesFigureRepository.getDifferenceOrder(id, year, month);
     }
 }

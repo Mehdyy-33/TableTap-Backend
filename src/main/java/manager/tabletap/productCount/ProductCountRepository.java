@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface ProductCountRepository extends JpaRepository<ProductCount, Long> {
 
-    @Query(value = "SELECT * FROM product_count WHERE category_Id = ? ORDER BY count DESC", nativeQuery = true)
-    List<ProductCount> getByCategory(Integer id);
+    @Query(value = "SELECT * FROM product_count WHERE category_Id = ?2 and user_id = ?1 ORDER BY count DESC", nativeQuery = true)
+    List<ProductCount> getByCategory(Integer id, Integer categoryId);
 }

@@ -10,16 +10,12 @@ import java.util.List;
 @RequestMapping("/productCount")
 public class ProductCountController {
 
-    private final ProductCountService testService;
+    private final ProductCountService productCountService;
 
-    @GetMapping
-    public List<ProductCount> getAll() {
-        return testService.getAll();
-    }
 
-    @GetMapping("category/{categoryId}")
-    public List<ProductCount> getByCategory(@PathVariable("categoryId") Integer categoryId) {
-        return testService.getByCategory(categoryId);
+    @GetMapping("category/{id}/{categoryId}")
+    public List<ProductCount> getByCategory(@PathVariable Integer id, @PathVariable("categoryId") Integer categoryId) {
+        return productCountService.getByCategory(id, categoryId);
     }
 
 

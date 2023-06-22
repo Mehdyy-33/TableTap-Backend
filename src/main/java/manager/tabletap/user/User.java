@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import manager.tabletap.Product.Product;
 import manager.tabletap.Salesfigure.SalesFigure;
+import manager.tabletap.productCart.ProductCart;
 import manager.tabletap.productCount.ProductCount;
 import manager.tabletap.promoCode.PromoCode;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,6 +57,12 @@ public class User implements UserDetails {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<ProductCount> productCounts = new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Set<ProductCart> productCarts = new HashSet<>();
+
 
     private String role;
 
