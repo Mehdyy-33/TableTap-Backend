@@ -10,27 +10,24 @@ import java.util.List;
 @Repository
 public interface ProductCartRepository extends JpaRepository<ProductCart, Long> {
 
-    @Query(value = "SELECT DISTINCT subquery.table_number FROM (SELECT table_number FROM `table-tap`.product_cart ORDER BY date DESC) AS subquery", nativeQuery = true)
-    List<Integer> findAllTable();
+    @Query(value = "SELECT DISTINCT subquery.table_number FROM (SELECT table_number FROM `table-tap`.product_cart WHERE user_id = ?1 ORDER BY date DESC) AS subquery", nativeQuery = true)
+    List<Integer> findAllTable(Long id);
 
-    @Query(value = "SELECT * FROM product_cart ORDER BY date ASC", nativeQuery = true)
-    List<ProductCart> getAllProductCart();
+    @Query(value = "SELECT * FROM product_cart WHERE user_id = ?1 ORDER BY date ASC", nativeQuery = true)
+    List<ProductCart> getAllProductCart(Long id);
 
-    @Query(value = "SELECT * FROM product_cart WHERE table_number = ? ORDER BY date ASC", nativeQuery = true)
-    List<ProductCart> findByNumberTable(Integer numberTable);
+    @Query(value = "SELECT * FROM product_cart WHERE table_number = ?1 AND user_id = ?2 ORDER BY date ASC", nativeQuery = true)
+    List<ProductCart> findByNumberTable(Integer numberTable, Long id);
 
-    @Query(value = "SELECT SUM(total) FROM product_cart WHERE (table_number = ?) AND (is_valid = true)", nativeQuery = true)
-    Double getTotalByNumberTable(Integer numberTable);
+    @Query(value = "SELECT SUM(total) FROM product_cart WHERE (table_number = ?1) AND (is_valid = true) AND (user_id = ?2) ", nativeQuery = true)
+    Double getTotalByNumberTable(Integer numberTable, Long id);
 
     @Modifying
     @Query(value = "delete from product_cart where table_number = ?", nativeQuery = true)
     void deleteByNumberTable(Integer numberTable);
 
 
-    @Query(value = "SELECT DATE_FORMAT(date, date ) AS moment, table_number, " +
-            "JSON_ARRAYAGG(JSON_OBJECT('id', id, 'product', product, 'quantity', quantity, 'is_view_staff', is_view_staff, 'is_valid', is_valid)) " +
-            "AS produits FROM product_cart GROUP BY moment, table_number", nativeQuery = true)
-    List<Object> getProductCartByMoment();
+
 
 
 }

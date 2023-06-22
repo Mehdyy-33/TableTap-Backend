@@ -1,7 +1,6 @@
 package manager.tabletap.promoCode;
 
 import lombok.RequiredArgsConstructor;
-import manager.tabletap.Subcategory.Subcategory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +12,9 @@ public class PromoCodeController {
 
     private final PromoCodeService service;
 
-    @GetMapping
-    public List<PromoCode> getAll() {
-        return service.getAll();
+    @GetMapping("/user/{id}")
+    public List<PromoCode> getAll(@PathVariable Long id) {
+        return service.getAll(id);
     }
 
     @GetMapping("/{id}")

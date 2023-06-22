@@ -40,5 +40,6 @@ public class Product {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User user;
+
 }
 

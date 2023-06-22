@@ -11,8 +11,8 @@ public class PromoCodeService {
 
     private final PromoCodeRepository repository;
 
-    public List<PromoCode> getAll(){
-        return repository.findAll();
+    public List<PromoCode> getAll(Long id){
+        return repository.findAllByUserId(id);
     }
 
     public PromoCode getById(Long id){
