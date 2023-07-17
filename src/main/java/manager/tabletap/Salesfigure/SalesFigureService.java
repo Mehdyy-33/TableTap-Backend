@@ -13,8 +13,8 @@ public class SalesFigureService {
     private final SalesFigureRepository salesFigureRepository;
 
     @Transactional
-    public SalesFigure addSalesFigure(Integer numberTable) {
-        salesFigureRepository.saveAddSalesFigure(numberTable);
+    public SalesFigure addSalesFigure(Integer numberTable, Long userId) {
+        salesFigureRepository.saveAddSalesFigure(numberTable, userId);
         return salesFigureRepository.getLastInsertedSalesFigure();
     }
 
