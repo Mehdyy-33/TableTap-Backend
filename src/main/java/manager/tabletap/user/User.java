@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="user_id", referencedColumnName = "id")
     @JsonIgnore
     private Set<PromoCode> promoCodes = new HashSet<>();
@@ -63,8 +63,9 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<ProductCart> productCarts = new HashSet<>();
 
-
     private String role;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

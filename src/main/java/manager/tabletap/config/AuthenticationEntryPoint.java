@@ -36,7 +36,7 @@ public class AuthenticationEntryPoint implements org.springframework.security.we
         } else if (request.getAttribute("jwt_exception") != null) {
             error.put("is_jwt_exception", "true");
             error.put("error_message", "");
-        } else if (request.getAttribute("username_taken_exception.") != null) {
+        } else if (request.getAttribute("username_taken_exception") != null) {
             error.put("is_username_taken", "true");
             error.put("error_message", "Email already taken.");
         } else if (request.getAttribute("bad_credentials") != null) {

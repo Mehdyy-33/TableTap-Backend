@@ -11,10 +11,10 @@ import java.util.List;
 public interface SalesFigureRepository extends JpaRepository<SalesFigure, Long> {
 
     @Modifying
-    @Query(value = "INSERT INTO sales_figure (total, date) " +
+    @Query(value = "INSERT INTO sales_figure (total, date, user_id) " +
             "VALUES ((SELECT SUM(total) FROM product_cart " +
-            "WHERE table_number = ?1 AND is_valid = true), CURRENT_DATE)", nativeQuery = true)
-    void saveAddSalesFigure(Integer numberTable);
+            "WHERE table_number = ?1 AND is_valid = true ), CURRENT_DATE, ?2)", nativeQuery = true)
+    void saveAddSalesFigure(Integer numberTable, Long userId);
 
     @Query(value = "SELECT * FROM sales_figure WHERE id = LAST_INSERT_ID()", nativeQuery = true)
     SalesFigure getLastInsertedSalesFigure();

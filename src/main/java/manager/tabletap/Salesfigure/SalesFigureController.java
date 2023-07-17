@@ -18,9 +18,9 @@ public class SalesFigureController {
         return salesFigureService.getAllFromMonth(id, year, month);
     }
 
-    @PostMapping("/addSalesFigure/{numberTable}")
-    public ResponseEntity<SalesFigure> addSalesFigure(@PathVariable("numberTable") Integer numberTable) {
-        SalesFigure salesFigure = salesFigureService.addSalesFigure(numberTable);
+    @PostMapping("/addSalesFigure/{numberTable}/{userId}")
+    public ResponseEntity<SalesFigure> addSalesFigure(@PathVariable("numberTable") Integer numberTable, @PathVariable("userId") Long userId) {
+        SalesFigure salesFigure = salesFigureService.addSalesFigure(numberTable, userId);
         return ResponseEntity.ok(salesFigure);
     }
 
